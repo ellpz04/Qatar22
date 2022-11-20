@@ -40,9 +40,9 @@ const connection = require('./database/db');
 //const authToken = '1064dc5b331c748c199ff2c55b59f9a5' // El TOKEN de tu cuenta; 
 //const client = require('twilio')(accountSid, authToken); 
 
-const accountSid = 'ACc43d61220600a796f192dac6d4376997'; 
-const authToken = '1064dc5b331c748c199ff2c55b59f9a5'; 
-const client = require('twilio')(accountSid, authToken); 
+//const accountSid = 'ACc43d61220600a796f192dac6d4376997'; 
+//const authToken = '1064dc5b331c748c199ff2c55b59f9a5'; 
+//const client = require('twilio')(accountSid, authToken); 
  
  
 //10 - establecemos las rutas
@@ -174,14 +174,14 @@ app.post('/registra_save1', async (req, res)=> {
 //	.done();
 	
 
-client.messages 
-      .create({ 
-         body: Alias,   
-		 messagingServiceSid: 'MGd83ac9dc18fe0332e4081368d3800b61',     
-         to: '+524423227450' 
-       }) 
-	   .then(message => console.log(`${Alias} - ${message.sid}`)) 
-      .done();
+//client.messages 
+//      .create({ 
+//         body: Alias,   
+//		 messagingServiceSid: 'MGd83ac9dc18fe0332e4081368d3800b61',     
+//         to: '+524423227450' 
+//       }) 
+//	   .then(message => console.log(`${Alias} - ${message.sid}`)) 
+//      .done();
 
 	console.log('Usuario registrado');
 	res.render('acceso', {
