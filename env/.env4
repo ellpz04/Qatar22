@@ -1,6 +1,7 @@
 //Definimos las variables de entorno para la conexion a la BD heroku
 
-DB_HOST = localhost
-DB_USER = usr01
-DB_PASS = V46ALGyDsbi_Qzmc
-DB_DATABASE = crudnodejs1
+DB_HOST = mysql.us.stackcp.com
+DB_USER = usr01-03da
+DB_PASS = Qatar2022
+DB_DATABASE = Qatar22_St-313930a60f
+DB_PORT = 57399
