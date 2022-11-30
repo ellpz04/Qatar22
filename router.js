@@ -65,7 +65,7 @@ router.get('/quinielas_data', (req, res)=>{
 //    console.log('Debug quiniela Id ',req.session.Id_participante);
 //    console.log('Debug quiniela A ',req.session.Alias);
 
-    conexion.query('SELECT Q.Id, P.Id Id_P ,R.Alias,L.clave ClaveL,P.Local,Q.ML,Q.MV,P.Visitante,V.Clave ClaveV   \
+    conexion.query('SELECT Q.Id, concat_ws(P.Descripcion, P.Id,  P.Id)  Id_P ,R.Alias,L.clave ClaveL,P.Local,Q.ML,Q.MV,P.Visitante,V.Clave ClaveV   \
     FROM partidos as P, paises as L, paises as V, quiniela as Q, participantes R, folder F    \
     WHERE P.Visitante = V.nombre and P.Local = L.nombre and P.Id = Q.Id_partido \
     and Q.Id_participante=R.Id_participante and Q.Id_participante=F.Id_participante and F.folder = ? order by Id_P',[globalfolder],(error, results)=>{
