@@ -173,7 +173,7 @@ exports.updatep = (req, res)=>{
 
     console.log({ML:ML, MV:MV});  
 
-    conexion.query('UPDATE partidos SET ML=?, MV=? WHERE Id = ?',[ML, MV, Id], (error, results)=>{
+    conexion.query('UPDATE partidos SET Estatus=1, ML=?, MV=? WHERE Id = ?',[ML, MV, Id], (error, results)=>{
         if(error){
             console.log(error);
         }else{           
