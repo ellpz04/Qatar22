@@ -173,8 +173,9 @@ exports.updatep = (req, res)=>{
 
     console.log({ML:ML, MV:MV});  
 
+    
     conexion.query('UPDATE partidos SET Estatus=1, ML=?, MV=? WHERE Id = ?',[ML, MV, Id], (error, results)=>{
-        if(error){
+       if(error){
             console.log(error);
         }else{           
       //      console.log(results);
@@ -217,7 +218,7 @@ exports.quiniela_update = (req, res)=>{
 
     console.log('Parte 1 Estatus=2 : ');
 
-    conexion.query('UPDATE quiniela SET ML=?, MV=?, Estatus=0 WHERE Id = ?',[ML, MV, Id], (error, results)=>{
+    conexion.query('UPDATE quiniela SET ML=?, MV=?, Estatus=5 WHERE Id = ?',[ML, MV, Id], (error, results)=>{
         if(error){
             console.log(error);
         }else{           

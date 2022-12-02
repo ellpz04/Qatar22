@@ -45,7 +45,7 @@ router.get('/quiniela_data', (req, res)=>{
 //    console.log('Debug quiniela 2 ',req.session.Alias);
 
 
-    conexion.query('SELECT Q.Id,P.Id Id_P,L.clave ClaveL,P.Local,Q.ML,Q.MV,P.Visitante,V.Clave ClaveV,P.Fecha,P.Horario,P.Estadio,Q.Estatus Estatus FROM partidos as P, paises as L, paises as V, quiniela as Q WHERE P.Visitante = V.nombre and P.Local = L.nombre and P.Id = Q.Id_partido and Q.Id_participante=? order by Id_P',[Id_p],(error, results)=>{
+    conexion.query('SELECT Q.Id,P.Id Id_P,L.clave ClaveL,P.Local,Q.ML,Q.MV,P.Visitante,V.Clave ClaveV,P.Fecha,P.Horario,P.Estadio,Q.Estatus Estatus FROM partidos as P, paises as L, paises as V, quiniela as Q WHERE Q.Estatus > 3 and P.Visitante = V.nombre and P.Local = L.nombre and P.Id = Q.Id_partido and Q.Id_participante=? order by Id_P',[Id_p],(error, results)=>{
         if(error){
             throw error;
         } else {                                                   
