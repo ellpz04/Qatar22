@@ -504,7 +504,7 @@ app.get('/partidos', (req, res)=> {
 	res.end();
 });
 
-//quiniela
+//quiniela 16
 app.get('/quiniela', (req, res)=> {
 
 //	console.log('Debug Q ',req.session.loggedin);
@@ -551,7 +551,32 @@ app.get('/quinielaC', (req, res)=> {
 		}
 		res.end();
 	});
+
+//Campeon
+app.get('/campeon', (req, res)=> {
+
+	//	console.log('Debug Q ',req.session.loggedin);
+	//	console.log('Debug Q ',req.session.Alias);
+		console.log('Debug Q ',req.session.Id_participante);
 	
+		if (req.session.loggedin) {
+			res.render('campeon',{
+				login: true,
+				Alias: req.session.Alias,
+				Nivel: req.session.Nivel,
+				Id_participante: req.session.Id_participante,
+				Folder: req.session.Folder,
+			});
+		} else {
+			res.render('campeon',{
+				login:false,
+				Alias:'Debe iniciar sesión',
+			});
+		}
+		res.end();
+	});
+	
+
 //RUTA para puntos 
 app.get('/puntosC', (req,res)=>{
 

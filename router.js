@@ -35,6 +35,31 @@ router.get('/datap', (req, res)=>{
 })
 
 //ruta para enviar los datos en formato json
+router.get('/quiniela_data1', (req, res)=>{     
+
+    const Id_p = req.session.Id_participante;
+
+
+//	console.log('Debug quiniela L ',req.session.loggedin);
+//    console.log('Debug quiniela Id ',req.session.Id_participante);
+//    console.log('Debug quiniela 2 ',req.session.Alias);
+
+
+    conexion.query('SELECT Q.Id,P.Id Id_P,L.clave ClaveL,P.Local,Q.ML,Q.MV,P.Visitante,V.Clave ClaveV,P.Fecha,P.Horario,P.Estadio,Q.Estatus Estatus FROM partidos as P, paises as L, paises as V, quiniela as Q WHERE P.Id > 48 and P.Visitante = V.nombre and P.Local = L.nombre and P.Id = Q.Id_partido and Q.Id_participante=? \
+    union all \
+    SELECT Q.Id,P.Id Id_P,Q.clave ClaveL,P.Local,null,null,Q.equipo,V.Clave ClaveV,P.Fecha,P.Horario,P.Estadio,Q.Estatus Estatus FROM partidos as P, paises as V, campeon as Q WHERE P.Id > 48 and Q.equipo = V.nombre and P.Id = Q.Id_partido and Q.Id_participante=? \
+    order by Id_P',[Id_p,Id_p],(error, results)=>{
+        if(error){
+            throw error;
+        } else {                                                   
+            datap = JSON.stringify(results);
+            res.send(datap);          
+        }   
+    })
+})
+
+
+//ruta para enviar los datos en formato json
 router.get('/quiniela_data', (req, res)=>{     
 
     const Id_p = req.session.Id_participante;
@@ -81,10 +106,20 @@ router.get('/quinielas_data', (req, res)=>{
 
 //ruta para enviar los datos en formato json
 router.get('/puntos_data', (req, res)=>{     
-    conexion.query('SELECT PU.Id,PA.nombre as Id_participante,PU.Id_folder,PU.Id_partido,PU.Local,  \
-    PU.Visitante,Total,Puntos_local,Puntos_empate,Puntos_visita,Candado,date_format(PU.Fecha, "%d-%m-%Y") as Fecha  \
-    	FROM puntos AS PU 	JOIN participantes AS PA ON PU.Id_participante = PA.Id_participante;',
-    (error, results)=>{
+
+    const Id_p = req.session.Id_participante;
+//    const Id_Alias = req.session.Alias;
+
+//	console.log('Debug quiniela L ',req.session.loggedin);
+    console.log('Debug quiniela Id ',req.session.Id_participante);
+//    console.log('Debug quiniela A ',req.session.Alias);
+
+    conexion.query('SELECT PU.Id,PA.nombre as Id_participante,PU.Id_partido,PR.ML,PR.MV,Q.ML Mi_ML,Q.MV Mi_MV,PU.Local,  \
+    PU.Visitante,Total,Puntos_local,Puntos_empate,Puntos_visita  \
+    	FROM puntos AS PU 	JOIN participantes AS PA ON PU.Id_participante = PA.Id_participante \
+        JOIN quiniela AS Q ON PU.Id_partido=Q.Id_partido and PU.Id_participante = Q.Id_participante \
+        JOIN partidos AS PR ON PU.Id_partido=PR.Id \
+        where PU.Id_participante=? order by Id',[Id_p],(error, results)=>{
         if(error){
             throw error;
         } else {                                                   
@@ -185,6 +220,18 @@ router.get('/partidos_edit/:Id', (req,res)=>{
     });
 });
 
+
+//RUTA PARA EDITAR UN REGISTRO SELECCIONADO
+router.get('/partidos_Inicia/:Id', (req,res)=>{    
+    const Id = req.params.Id;
+    conexion.query('SELECT P.Id,L.clave ClaveL,P.Local,P.ML,P.MV,P.Visitante,V.Clave ClaveV,date_format(Fecha, "%d-%m-%Y") as Fecha,Horario,Estadio,Estatus FROM partidos as P, paises as L, paises as V WHERE P.Visitante = V.nombre and P.Local = L.nombre and P.Id=?',[Id] , (error, results) => {
+        if (error) {
+            throw error;
+        }else{            
+            res.render('partidos_Inicia.ejs', {user:results[0]});            
+        }        
+    });
+});
 
 //RUTA PARA EDITAR UN REGISTRO SELECCIONADO
 router.get('/quiniela_edit/:Id', (req,res)=>{    
@@ -365,12 +412,14 @@ const pool = require('./database/db');
 
 router.post('/savep', crud.savep);
 router.post('/updatep', crud.updatep);
+router.post('/updatepatidoIni', crud.updatepatidoIni);
 router.post('/participantes_update', crud.participantes_update);
 router.post('/participantes_update2', crud.participantes_update2);
 router.post('/participantes_updateNuevo', crud.participantes_updateNuevo);
 router.post('/registra_save', crud.registra_save);
 router.post('/registra_autoriza', crud.registra_autoriza);
 router.post('/quiniela_update', crud.quiniela_update);
+router.post('/campeon_update', crud.campeon_update);
 
 //router.post('/registra_autoriza', (req,res)=>{
 //    console.log(req.body)

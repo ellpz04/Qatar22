@@ -41,9 +41,14 @@
                   <a class="nav-link" href="/quinielaC">Quiniela</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/partidos">Partidos</a>
+                <a class="nav-link" href="/ranking">Rankin</a>
             </li>
-
+            <li class="nav-item">
+              <a class="nav-link" href="/campeon">Campeón</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/partidos">Partidos</a>
+        </li>
 
             </ul>
           </div>
@@ -52,17 +57,18 @@
       <div class="flex-container-tit">
         <div class="flex-titulo">   
           <div class="cat">
-            <img src="resources/images/Partidos.png" />               
+            <img src="resources/images/Qatar2022B.png" />               
           </div>
         </div>
 
         <div id="header" class="flex-titulo">   
-            <h1>  PARTIDOS     -  </h1>    <%= Alias %>
+            <h1>  CAMPEON     -  </h1>    <%= Alias %>
         </div>
     </div>
 
     <div class="flex-container">
       <div class="container">
+        
       <table id="partidos" class="table table-bordered table-striped text-center mt-4">
         <thead>
           <tr class="text-white" style="background-color:#6200ee;">
@@ -73,7 +79,8 @@
             <th scope="col">MV</th>
             <th scope="col">VISITANTE</th>
             <th scope="col">BV</th>            
-            <th scope="col">ACCIONES</th>            
+            <th scope="col">ACCIONES</th> 
+            <th scope="col">INICIA</th>            
           </tr>
         </thead>
       </tr>
@@ -87,7 +94,8 @@
         <th scope="col">MV</th>
         <th scope="col">VISITANTE</th>    
         <th scope="col">BV</th>         
-        <th scope="col">ACCIONES</th>     
+        <th scope="col">ACCIONES</th>
+        <th scope="col">INICIA</th>     
       </tr>
     </tfoot>
   </table>  
@@ -124,6 +132,11 @@
         {"data": null,
             "render": function (partidos_dat) { 
                 return '<a href="/partidos_edit/'+partidos_dat.Id+ '"class="btn btn-info"><i class="fas fa-edit"></i></a>'
+                }
+        },      
+        {"data": null,
+            "render": function (partidos_inicia) { 
+                return '<a href="/partidos_Inicia/'+partidos_inicia.Id+ '"class="btn btn-info"><i class="fas fa-edit"></i></a>'
                 }
         }
     ],

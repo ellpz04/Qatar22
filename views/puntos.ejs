@@ -105,15 +105,16 @@
             <th scope="col">ID</th>
             <th scope="col">PARTICIPANTE</th>
             <th scope="col">PARTIDO</th>
+            <th scope="col">ML</th>
+            <th scope="col">MV</th>
+            <th scope="col">MI ML</th>
+            <th scope="col">MI MV</th>
             <th scope="col">TOTAL</th>  
             <th scope="col">GOL LOCAL</th>
             <th scope="col">GOL VISITANTE</th>               
             <th scope="col">PUNTOS LOCAL</th>   
             <th scope="col">PUNTOS EMPATE</th>    
-            <th scope="col">PUNTOS VISITA</th>
-            <th scope="col">CANDADO</th>
-            <th scope="col">FOLDER</th>
-            <th scope="col">FECHA</th>         
+            <th scope="col">PUNTOS VISITA</th>        
           </tr>
         </thead>
       </tr>
@@ -123,15 +124,16 @@
         <th scope="col">ID</th>
         <th scope="col">PARTICIPANTE</th>
         <th scope="col">PARTIDO</th>
+        <th scope="col">ML</th>
+        <th scope="col">MV</th>
+        <th scope="col">MI ML</th>
+        <th scope="col">MI MV</th>
         <th scope="col">TOTAL</th>  
         <th scope="col">GOL LOCAL</th>
         <th scope="col">GOL VISITANTE</th>               
         <th scope="col">PUNTOS LOCAL</th>   
         <th scope="col">PUNTOS EMPATE</th>    
-        <th scope="col">PUNTOS VISITA</th>
-        <th scope="col">CANDADO</th>
-        <th scope="col">FOLDER</th>
-        <th scope="col">FECHA</th>     
+        <th scope="col">PUNTOS VISITA</th>     
       </tr>
     </tfoot>
   </table>  
@@ -160,15 +162,16 @@
         {"data": "Id"},      
         {'data': 'Id_participante'}, 
         {'data': 'Id_partido'}, 
+        {'data': 'ML'},
+        {'data': 'MV'},      
+        {'data': 'Mi_ML'},
+        {'data': 'Mi_MV'}, 
         {'data': 'Total'},  
         {'data': 'Local'},
         {'data': 'Visitante'},    
         {'data': 'Puntos_local'},      
         {'data': 'Puntos_empate'},   
-        {'data': 'Puntos_visita'},
-        {'data': 'Candado'},
-        {'data': 'Id_folder'}, 
-        {'data': 'Fecha'}
+        {'data': 'Puntos_visita'}
     ],
     columnDefs:
             [{
@@ -177,14 +180,6 @@
               "searchable": false
             },{
               "targets": 1,
-              "visible": false,
-              "searchable": false
-            },{
-              "targets": 9,
-              "visible": false,
-              "searchable": false
-            },{
-              "targets": 10,
               "visible": false,
               "searchable": false
             }],

@@ -195,6 +195,25 @@ exports.updatep = (req, res)=>{
 });
 }
 
+
+
+//ACTUALIZAR partido inicia
+exports.updatepatidoIni = (req, res)=>{
+    const Id = req.body.Id;
+
+    console.log(Id); 
+    
+    conexion.query('UPDATE partidos SET Estatus=2 WHERE Id = ?',[Id], (error, results)=>{
+       if(error){
+            console.log(error);
+        }else{           
+            console.log(results);   
+            res.redirect('/partidos');    
+        }
+});
+}
+
+
 //ACTUALIZAR un REGISTRO
 exports.quiniela_update = (req, res)=>{
     const Id = req.body.Id;
@@ -230,6 +249,41 @@ exports.quiniela_update = (req, res)=>{
         }
     });
 }
+
+//ACTUALIZAR un REGISTRO
+exports.campeon_update = (req, res)=>{
+    const SubCampeon = req.body.SubCampeon;
+    const campeon = req.body.campeon;
+    const Id_p = req.session.Id_participante;
+
+    console.log({SubCampeon:SubCampeon}); 
+    console.log({campeon:campeon}); 
+    console.log('Participante: ',Id_p); 
+
+    conexion.query('UPDATE campeon SET Equipo = ? WHERE Id >0 and Id_partido = 65 and Id_participante = ? ' ,[SubCampeon,Id_p], (error, results)=>{
+        if(error){
+            console.log(error);
+        }else{           
+//            console.log(results);        
+        }
+    });
+
+//    console.log('Parte 1 Estatus=2 : ');
+
+    conexion.query('UPDATE campeon SET Equipo = ? WHERE Id >0 and Id_partido = 66 and Id_participante = ? ' ,[campeon,Id_p], (error, results)=>{
+        if(error){
+            console.log(error);
+        }else{           
+ //           console.log(results);
+
+ //           console.log('Parte 1 Estatus=0 : ');
+
+            res.redirect('/quiniela');         
+        }
+    });
+}
+
+
 
 exports.participantes_updateNuevo = (req, res)=>{
     const Id_participante = req.body.Id_participante;

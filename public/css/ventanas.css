@@ -1,6 +1,5 @@
 * {
   font-family: 'Sen', sans-serif;
-  font-weight: 60;
 }
 
 .flex-container {
@@ -53,7 +52,7 @@
   }					  
 
 .Lpzcontainer {  display: grid;
-  grid-template-columns: 1.5fr 1.5fr;
+  grid-template-columns: 1.5fr 1fr;
   grid-template-rows: 5fr;
   gap: 3px 3px;
   grid-auto-flow: row;
@@ -80,6 +79,7 @@
   color: #fff;
   padding: 10px;
   margin: 10px;
+  font-weight: bold;
 }
 
 .Ranking_img { grid-area: Quiniela;
