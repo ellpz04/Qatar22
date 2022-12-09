@@ -560,7 +560,7 @@ app.get('/campeon', (req, res)=> {
 		console.log('Debug Q ',req.session.Id_participante);
 	
 		if (req.session.loggedin) {
-			res.render('campeon',{
+			res.render('resultados',{
 				login: true,
 				Alias: req.session.Alias,
 				Nivel: req.session.Nivel,
@@ -568,7 +568,7 @@ app.get('/campeon', (req, res)=> {
 				Folder: req.session.Folder,
 			});
 		} else {
-			res.render('campeon',{
+			res.render('resultados',{
 				login:false,
 				Alias:'Debe iniciar sesión',
 			});
